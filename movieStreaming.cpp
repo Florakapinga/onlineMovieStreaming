@@ -63,3 +63,8 @@ public:
             std::cout << "Invalid movie index!\n";
         }
     }
+    size_t getMoviesCount() const
+    { // Added method to get the count of movies
+        return movies.size();
+    }
+};
