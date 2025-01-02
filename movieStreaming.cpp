@@ -68,3 +68,69 @@ public:
         return movies.size();
     }
 };
+int main()
+{
+    StreamingService service;
+
+    int choice;
+
+    do
+    {
+        std::cout << "\n=== Online Movie Streaming Service ===\n";
+        std::cout << "1. Add Movie\n";
+        std::cout << "2. Display Movies\n";
+        std::cout << "3. Stream Movie\n";
+        std::cout << "4. Exit\n";
+        std::cout << "Enter your choice: ";
+        std::cin >> choice;
+
+        switch (choice)
+        {
+        case 1:
+        {
+            std::string title, genre;
+            double duration;
+
+            std::cin.ignore(); // Clear input buffer
+            std::cout << "Enter movie title: ";
+            getline(std::cin, title);
+
+            std::cout << "Enter movie genre: ";
+            getline(std::cin, genre);
+
+            std::cout << "Enter movie duration (in minutes): ";
+            std::cin >> duration;
+
+            service.addMovie(Movie(title, genre, duration));
+            break;
+        }
+        case 2:
+            service.displayMovies();
+            break;
+        case 3:
+        {
+            int index;
+            service.displayMovies();
+
+            if (service.getMoviesCount() == 0)
+            {          // Check if there are any movies
+                break; // No movies to stream
+            }
+
+            std::cout << "\nEnter the movie index to stream: ";
+            std::cin >> index;
+
+            service.streamMovie(index - 1); // Adjusting for zero-based index
+            break;
+        }
+        case 4:
+            std::cout << "Exiting the system.\n";
+            break;
+        default:
+            std::cout << "Invalid choice! Please try again.\n";
+        }
+
+    } while (choice != 4);
+
+    return 0;
+}
