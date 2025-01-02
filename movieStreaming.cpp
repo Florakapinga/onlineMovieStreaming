@@ -12,3 +12,15 @@ private:
 public:
     Movie(std::string t, std::string g, double d)
         : title(t), genre(g), duration(d) {}
+    void displayInfo() const
+    {
+        std::cout << "Title: " << title << "\n"
+                  << "Genre: " << genre << "\n"
+                  << "Duration: " << duration << " minutes\n";
+    }
+
+    std::string getTitle() const
+    {
+        return title;
+    }
+};
